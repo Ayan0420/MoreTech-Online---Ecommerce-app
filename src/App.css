@@ -1,38 +1,60 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Anuphan&display=swap');
+
+html {
+  overflow-x: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  overflow-x: hidden;
+  font-family: 'Anuphan', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.logo{
+  max-height: 90px;  
+}
+
+.search-bar{
+    max-width: 20rem !important;
+}
+
+.secondary-nav{
+  font-size: smaller;
+}
+
+.login-bottom-text{
+  font-size: .9rem;
+}
+
+.login-form-width{
+  width: 100%;
+}
+
+@media (min-width: 768px){
+  .login-form-width{
+    width: 40%;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.register-form-width{
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (min-width: 768px){
+  .register-form-width{
+    width: 60%;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+.form-shadow{
+  box-shadow: 1px 1px 15px #0000007c;
+}
+
+.view-height{
+  height: 100% !important;
+}
+
+@media (min-width: 768px){
+  .view-height{
+    height: 100vh !important;
   }
 }
