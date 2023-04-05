@@ -51,7 +51,7 @@ export default function AppNavBar() {
       
     </Navbar>
     
-    <Navbar className="nav navbar-dark px-3 pb-2 mt-0" bg="primary" expand="sm">
+    <Navbar className="nav navbar-dark px-3 pb-4 mt-0" bg="primary" expand="sm">
         <Container>
 
                   {/* "as={Link}" attribute will change the current tag to the "Link" component*/}
@@ -60,16 +60,17 @@ export default function AppNavBar() {
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto text-center">
 
+            {/* <div className='d-flex justfy-content-between'>
+            </div> */}
+            <Nav className="me-auto text-center align-items-center">
                 <Nav.Link as={Link} to='/' >Home</Nav.Link>
-                <Nav.Link as={Link} to='/products'>Catalogue</Nav.Link>
+                <Nav.Link as={Link} to='/products'>Products</Nav.Link>
                 <Nav.Link as={Link} to='/categories'>Categories</Nav.Link>
-
-              
+                <Nav.Link as={Link} to='/categories'>Hot!</Nav.Link>
             </Nav>
 
-            <InputGroup className="mx-4 text-center" >
+            <InputGroup className="mx-4 text-center align-self-center" >
                 <Form.Control
                 placeholder="Search Products"
                 aria-label="Search Products"
