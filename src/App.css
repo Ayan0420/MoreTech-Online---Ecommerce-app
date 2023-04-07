@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Anuphan&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Suwannaphum:wght@900&display=swap');
 
-html {
-  overflow-x: hidden;
-}
 
 body{
-  overflow-x: hidden;
   font-family: 'Anuphan', sans-serif;
+  background-color: #f5f5f5
 }
 
 .logo{
@@ -19,6 +17,14 @@ body{
 
 .secondary-nav{
   font-size: smaller;
+}
+
+.small-font{
+  font-size: smaller;
+}
+
+.smaller-font{
+  font-size: x-small;
 }
 
 .login-bottom-text{
@@ -57,4 +63,55 @@ body{
   .view-height{
     height: 100vh !important;
   }
+}
+.sidebar{
+  position: fixed !important;
+}
+.side-nav{
+  color: #ecf0f1;
+  transition: all .3s;
+}
+.side-nav:hover{
+  background-color: #13967d;
+}
+
+.active{
+  background-color: #506f8f !important;
+}
+
+.table-header{
+  position: sticky;
+  top:0px;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  max-width: auto;
+}
+
+.row {
+  --bs-gutter-x: 2rem !important;
+}
+
+.home-header{
+  font-family: 'Suwannaphum', serif;
+  font-weight: bolder;
+  text-shadow: 3px 4px 1px rgba(0, 0, 0, 0.233);
+  stroke: #2c3e50;
+}
+
+.card-img{
+  max-width: 300px;
+}
+
+.product-card{
+  transition: all .3s;
+}
+
+.product-card:hover{
+  transform: scale(1.02);
+  cursor: pointer;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.349);
+}
+
+.quantity{
+  max-width: 9rem;
 }

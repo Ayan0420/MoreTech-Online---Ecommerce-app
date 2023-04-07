@@ -75,7 +75,8 @@ export default function Login() {
 			console.log(data);
 			setUser({
 				id: data._id,
-				isAdmin: data.isAdmin
+				isAdmin: data.isAdmin,
+				isSeller: data.isSeller
 			})
 		});
 	}
