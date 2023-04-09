@@ -39,16 +39,18 @@ export default function AdminDashboardActiveProducts() {
                 data.map(product => {
                     return(
                         <tr key={product._id}>
-                            <td>{product._id}</td>
+                            {/* <td>{product._id}</td> */}
                             <td>{product.productName}</td>
+                            <td><img src={`${product.productImg}`} className="img-table-col" alt="" /></td>
                             <td>{product.category}</td>
                             <td>
+                                <p><strong>Product ID: </strong>{product._id}</p>
                                 <p>
                                 {product.description}
                                 </p>
                             </td>
                             <td>{product.author.authorName}</td>
-                            <td>{product.price}</td>
+                            <td>₱{product.price.toLocaleString()}</td>
                             <td>{product.stocks}</td>
                             <td>
                                 <AdminActionButtons productId={product._id} isActive={product.isActive}/>
@@ -67,24 +69,25 @@ export default function AdminDashboardActiveProducts() {
     <Row className="vw-100">
         <AdminSidebar />
         <Col xs={9}>
+            <div className="mt-5 px-0">
+                    <h1>Active Products</h1>
                 {
                 (isLoading) ?
-                        <Loading msg="Retrieving all active products..."/>
-                    :
-                // <div>test</div>
-                <div className="mt-5 px-0">
-                    <h1>Active Products</h1>
+                    <Loading msg="Retrieving all active products..."/>
+                :
+                <>
                     <i className="d-block text-end">List of all ACTIVE products added to the site.</i>
 
                     <Table striped className="mt-2 small-font">
                         <thead className="table-header">
                             <tr>
-                                <th>Product ID</th>
+                                {/* <th >Product ID</th> */}
                                 <th>Name</th>
+                                <th>Image</th>
                                 <th>Category</th>
                                 <th>Description</th>
                                 <th>Author</th>
-                                <th>Price in ₱</th>
+                                <th>Price</th>
                                 <th>Stocks</th>
                                 <th>
                                     Actions
@@ -99,11 +102,10 @@ export default function AdminDashboardActiveProducts() {
                         <p>No active products found</p>
                         :
                         <></>
-                    }
-                </div>   
-
+                    } 
+                </>
                 }
-            
+            </div>   
         </Col>
     </Row>
     </>

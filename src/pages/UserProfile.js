@@ -10,7 +10,7 @@ export default function UserProfile() {
     <>
       <AppNavBar />
       <Container>
-        <h2 className='mt-5 mb-4'>My Profile</h2>
+        <h2 className='my-4'>My Profile</h2>
         <Row>
           <Col md={4} >
             <UserInfo />

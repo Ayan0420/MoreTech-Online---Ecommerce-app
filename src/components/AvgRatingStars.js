@@ -3,13 +3,22 @@ export default function AvgRatingStars({avgRating}) {
   return (
     <>
         {Math.round(avgRating) == 1 && 
+        <>
             <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-regular fa-star text-warning"></i>
+            <i class="fa-regular fa-star text-warning"></i>
+            <i class="fa-regular fa-star text-warning"></i>
+            <i class="fa-regular fa-star text-warning"></i>
+        </>
         }
 
         {Math.round(avgRating) == 2 && 
         <>
             <i class="fa-solid fa-star text-warning"></i>
             <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-regular fa-star text-warning"></i>
+            <i class="fa-regular fa-star text-warning"></i>
+            <i class="fa-regular fa-star text-warning"></i>
         </>
         }
 
@@ -18,6 +27,8 @@ export default function AvgRatingStars({avgRating}) {
             <i class="fa-solid fa-star text-warning"></i>
             <i class="fa-solid fa-star text-warning"></i>
             <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-regular fa-star text-warning"></i>
+            <i class="fa-regular fa-star text-warning"></i>
         </>
          }
 
@@ -27,6 +38,7 @@ export default function AvgRatingStars({avgRating}) {
             <i class="fa-solid fa-star text-warning"></i>
             <i class="fa-solid fa-star text-warning"></i>
             <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-regular fa-star text-warning"></i>
         </>
          }
 

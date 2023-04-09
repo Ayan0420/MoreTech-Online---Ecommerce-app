@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import UserContext from '../userContext'
+import Loading from './Loading';
 
 export default function UserInfo() {
     
-    const {user} = useContext(UserContext);
+   const {user} = useContext(UserContext);
   
   //Personal Info
   const [firstName, setFirstName] = useState("null");
@@ -13,7 +14,7 @@ export default function UserInfo() {
   const [address, setAddress] = useState("null");
   const [mobileNo, setMobileNo] = useState("null");
 
-  //My Orders
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/users/details`, {
@@ -23,6 +24,9 @@ export default function UserInfo() {
     })
     .then(res => res.json())
     .then(data => {
+
+      setIsLoading(false);
+
       setFirstName(data.firstName);
       setLastName(data.lastName);
       setEmail(data.email);
@@ -35,11 +39,18 @@ export default function UserInfo() {
     <>
         <div className='border border-1 bg-light p-3'>
             <h3 className='mb-3'>User Information</h3>
-            <h5>Name: {firstName} {lastName}</h5>
-            <h5>Email: {email}</h5>
-            <h5>Address: {address}</h5>
-            <h5>Contact Number: {mobileNo}</h5>
-            <Button size='sm' variant='primary mt-3'>Request for Edit</Button>
+            {
+              isLoading ?
+              <Loading msg={"Loading user info..."}/>
+              :
+              <>
+                <h5>Name: {firstName} {lastName}</h5>
+                <h5>Email: {email}</h5>
+                <h5>Address: {address}</h5>
+                <h5>Contact Number: {mobileNo}</h5>
+                <Button size='sm' variant='primary mt-3'>Request for Edit</Button>
+              </>
+            }
         </div>
 
 

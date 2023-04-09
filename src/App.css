@@ -115,3 +115,8 @@ body{
 .quantity{
   max-width: 9rem;
 }
+
+.img-table-col{
+  max-width: 100px;
+}
+

@@ -26,7 +26,7 @@ export default function ProductCard(props) {
                         (productName.length >= 45) ? <span>...</span> : <></>
                     }</Card.Title>
 
-                    <Card.Text className="text-success mb-0">₱ {price}</Card.Text>
+                    <Card.Text className="text-success mb-0">₱ {price.toLocaleString()}</Card.Text>
                     <Card.Text className="text-primary smaller-font mb-2">
                         <AvgRatingStars avgRating={avgRating} />                                        
                     </Card.Text>

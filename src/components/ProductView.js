@@ -6,7 +6,7 @@ import Loading from "./Loading";
 import Swal from "sweetalert2";
 import UserContext from "../userContext";
 
-export default function ProductView() {
+export default function ProductView(props) {
   
   const navigate = useNavigate()
   const {user} = useContext(UserContext)
@@ -26,11 +26,22 @@ export default function ProductView() {
 
   const {productId} = useParams()
   const [isLoading, setIsLoading] = useState(true)
+  const [isAdminViewActive, setIsAdminViewActive] = useState(false);
 
-  const [isAddBtnActive, setIsAddBtnActive] = useState(true)
-  const [isSubtBtnActive, setIsSubtBtnActive] = useState(true)
+  const adminView = props.adminView;
+
+  function setAdminView(x){
+    if(x === true){
+      setIsAdminViewActive(true)
+    } else {
+      setIsAdminViewActive(false)
+    }
+  }
+
 
   useEffect(() => {
+
+    setAdminView(adminView);
 
     fetch(`${process.env.REACT_APP_API_URL}/products/${productId}/details`)
     .then(res => res.json())
@@ -76,6 +87,15 @@ export default function ProductView() {
 
   function checkout(){
 
+    if(stocks === 0){
+      Swal.fire({
+        title: 'No stocks available.',
+        icon: 'warning',
+        confirmButtonColor: "#2c3e50"
+      });
+      return
+    }
+
     if(quantity === 0){
       Swal.fire({
         title: 'Please indicate the quantity.',
@@ -92,8 +112,8 @@ export default function ProductView() {
       Swal.fire({
         title: 'Confirm Checkout',
         html: `
-          Product Name: <strong>${productName.slice(0, 30)}...</strong>
-          <h5 class=""> Quantity: <strong>${quantity}</strong></h5>
+          <h5>Product Name:<strong>${productName.slice(0, 30)}...</strong></h5>
+          <h5> Unit Price: <strong>${price}</strong> | Quantity: <strong>${quantity}</strong></h5>
           <h4 class="mt-3">TOTAL AMOUNT: <strong class="text-success">${quantity*price}</strong></h4>
           <div class="mt-5 text-start">
             <p class="mt-3 mb-0 small-font">Shipping to: <strong>${address}</strong></p>
@@ -139,7 +159,7 @@ export default function ProductView() {
             icon: 'success',
             confirmButtonColor: "#2c3e50"
           })
-          // navigate(`/`) //change this to my orders
+          navigate(`/profile`) //change this to my orders
         }
       })
     }
@@ -161,9 +181,16 @@ export default function ProductView() {
 
             <div className="d-flex align-items-center">
 
-              <span className="text-warning me-1">{avgRating}</span>
-              <span className="small-font"><AvgRatingStars avgRating={avgRating}/></span>
-              <span className="ms-1">({reviews.length})</span>
+              {
+                (avgRating == 0) ? <span>No ratings yet</span>
+                :
+                <>
+                  <span className="text-warning me-1">{avgRating}</span>
+                  <span className="small-font"><AvgRatingStars avgRating={avgRating}/></span>
+                  <span className="ms-1">({reviews.length})</span>
+                </>
+                
+              }
 
               {/* if I have time, add number of sold items */}
               {/* <span className="px-2">|</span>
@@ -173,34 +200,38 @@ export default function ProductView() {
 
             </div>
 
-
-            <h3 className="mt-3 text-success fw-bold">₱ {price}</h3>
+            <h3 className="mt-3 text-success fw-bold">₱ {price.toLocaleString()}</h3>
             <p className="mt-3 fw-bold">Description:</p>
             <p>{description}</p>
             
-            <p className="mt-4 fw-bold">{stocks} pieces available</p>
+            <p className="mt-4 "><strong>{stocks}</strong> pieces available</p>
 
-            <div className="mt-2">
-              <p className="mb-1"> 
-              Quantity:
-              </p>
-              <InputGroup className="quantity mb-3">            
-                <Button variant="outline-dark px-3 py-0 fw-bold fs-4" size="sm" onClick={subtractQuantity}>-</Button>
-                
-                <Form.Control className="text-center"
-                  onChange={(e) => setQuantity(e.target.value)}
-                  value={quantity}
-                />
+            {isAdminViewActive ?
+              <>
+              <p>Product Id: <strong>{productId}</strong></p>
+              <p>Availability: <strong>{isActive ? 'Yes' : 'No'}</strong></p>
+              </>
+            :
+              <div className="mt-2 ">
+                <p className="mb-1"> 
+                Quantity:
+                </p>
+                <InputGroup className="quantity mb-3">            
+                  <Button variant="outline-dark px-3 py-0 fw-bold fs-4" size="sm" onClick={subtractQuantity}>-</Button>
+                  
+                  <Form.Control className="text-center"
+                    onChange={(e) => setQuantity(e.target.value)}
+                    value={quantity}
+                  />
 
-                <Button variant="outline-dark px-3 py-0 fw-bold fs-4" size="sm" onClick={addQuantity}>+</Button>              
-              </InputGroup>
-              
-              
+                  <Button variant="outline-dark px-3 py-0 fw-bold fs-4" size="sm" onClick={addQuantity}>+</Button>              
+                </InputGroup>
+                <Button variant="warning rounded-0 me-2">Add to Cart</Button>
+                <Button onClick={checkout} variant="primary rounded-0 me-2">Buy Now</Button>
+              </div>
 
-
-              <Button variant="warning rounded-0 me-2">Add to Cart</Button>
-              <Button onClick={checkout} variant="primary rounded-0 me-2">Buy Now</Button>
-            </div>
+            }
+            
           </div>
 
         </Col>
