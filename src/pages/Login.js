@@ -76,7 +76,10 @@ export default function Login() {
 			setUser({
 				id: data._id,
 				isAdmin: data.isAdmin,
-				isSeller: data.isSeller
+				isSeller: data.isSeller,
+				address: data.address,
+				firstName: data.firstName
+				
 			})
 		});
 	}

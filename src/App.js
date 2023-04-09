@@ -20,7 +20,7 @@ import AdminDashboardUpdateProduct from './pages/AdminDashboard/AdminDashboardUp
 import ProductPage from './pages/ProductPage';
 import AllProducts from './pages/AllProducts';
 import Categories from './pages/Categories';
-import UserOrders from './pages/UserOrders';
+import UserProfile from './pages/UserProfile';
 
 
 const App = () => {
@@ -28,7 +28,9 @@ const App = () => {
   const [user, setUser] = useState({
     id: null,
     isAdmin: null,
-    isSeller: null
+    isSeller: null,
+    address: null,
+    firstName: null,
   });
 
   // Function for clearing localStorage on logout
@@ -51,15 +53,19 @@ const App = () => {
         setUser({
           id: data._id,
           isAdmin: data.isAdmin,
-          isSeller: data.isSeller
-        })
+          isSeller: data.isSeller,
+          address: data.address,
+          firstName: data.firstName
+        });
 
       // User is logged out
       } else {
         setUser({
           id: null,
           isAdmin: null,
-          isSeller: null
+          isSeller: null,
+          address: null,
+          firstName: null
         })
       }
     })
@@ -80,7 +86,7 @@ const App = () => {
               <Route path='/categories' element={<Categories/>} />
               <Route path='/product/:productId' element={<ProductPage/>} />
 
-              <Route path='/user-orders' element={<UserOrders/>} />
+              <Route path='/profile' element={<UserProfile/>} />
 
 
               <Route path='/admin-all-products' element={<AdminDashboardAllProducts/>} />

@@ -1,14 +1,17 @@
 import { Col, Row, Button, InputGroup, Form } from "react-bootstrap"
 import AvgRatingStars from "./AvgRatingStars"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "./Loading";
 import Swal from "sweetalert2";
+import UserContext from "../userContext";
 
 export default function ProductView() {
   
   const navigate = useNavigate()
-
+  const {user} = useContext(UserContext)
+  const address = user.address;
+  console.log(user)
   const [productName, setProductName] = useState("")
   const [category, setCategory] = useState("")
   const [price, setPrice] = useState(0);
@@ -79,10 +82,24 @@ export default function ProductView() {
         icon: 'warning',
         confirmButtonColor: "#2c3e50"
       });
+    } else if(user.isAdmin == true || user.isSeller == true ){
+      Swal.fire({
+        title: `${user.isAdmin == true ? 'Admins' : 'Sellers'} are not allowed to purchase!`,
+        icon: 'error',
+        confirmButtonColor: "#2c3e50"
+      });
     } else {
       Swal.fire({
         title: 'Confirm Checkout',
-        html: `Product Name: <strong>${productName.slice(0, 30)}...</strong><h5 class="mt-3"> Quantity: <strong>${quantity}</strong></h5><h4 class="mt-3">TOTAL AMOUNT: <strong class="text-success">${quantity*price}</strong></h4>`, 
+        html: `
+          Product Name: <strong>${productName.slice(0, 30)}...</strong>
+          <h5 class=""> Quantity: <strong>${quantity}</strong></h5>
+          <h4 class="mt-3">TOTAL AMOUNT: <strong class="text-success">${quantity*price}</strong></h4>
+          <div class="mt-5 text-start">
+            <p class="mt-3 mb-0 small-font">Shipping to: <strong>${address}</strong></p>
+            <p class="small-font">Payment Method: <strong>COD</strong></p>
+          </div>
+        `, 
         showCancelButton: true,
         confirmButtonColor: "#2c3e50",
         cancelButtonColor: '#d33',
@@ -122,8 +139,8 @@ export default function ProductView() {
             icon: 'success',
             confirmButtonColor: "#2c3e50"
           })
+          // navigate(`/`) //change this to my orders
         }
-        navigate(`/product/${productId}`) //change this to my orders
       })
     }
 
@@ -148,8 +165,9 @@ export default function ProductView() {
               <span className="small-font"><AvgRatingStars avgRating={avgRating}/></span>
               <span className="ms-1">({reviews.length})</span>
 
-              <span className="px-2">|</span>
-              <span className="text-danger fst-italic">Sold: 10</span>
+              {/* if I have time, add number of sold items */}
+              {/* <span className="px-2">|</span>
+              <span className="text-danger fst-italic">Sold: 10</span> */}
 
               <span className="ms-auto fst-italic">Category: {category}</span>
 

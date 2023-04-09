@@ -1,0 +1,25 @@
+
+import { Button, Col, Container, Row } from 'react-bootstrap'
+import AppNavBar from '../components/AppNavbar'
+import UserInfo from '../components/UserInfo'
+import UserOrders from '../components/UserOrders'
+
+export default function UserProfile() {
+  
+  return (
+    <>
+      <AppNavBar />
+      <Container>
+        <h2 className='mt-5 mb-4'>My Profile</h2>
+        <Row>
+          <Col md={4} >
+            <UserInfo />
+          </Col>
+          <Col md={8}>
+            <UserOrders />
+          </Col>
+        </Row>
+      </Container>
+    </>  
+  )
+}

@@ -1,7 +1,10 @@
+import { useContext } from "react"
 import { Row, Col } from "react-bootstrap"
 import { Link, NavLink } from "react-router-dom"
+import UserContext from "../userContext"
 
 export default function AdminSidebar() {
+    const {user} = useContext(UserContext)
   return (
     <Col xs={3} className="mx-0">
         <div className="d-flex flex-column flex-shrink-0 p-3 text-white bg-primary sidebar vh-100">
@@ -46,11 +49,11 @@ export default function AdminSidebar() {
             <div className="dropdown pt-3 border-top border-2">
                 <Link to="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://www.shareicon.net/data/512x512/2015/09/18/103160_man_512x512.png" alt="" width="32" height="32" className="rounded-circle me-2" />
-                    <strong>Jerry Clark Ian</strong>
+                    <strong>{user.firstName}</strong>
                 </Link>
                 <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                     <li><Link className="dropdown-item" to="/">Go back to the main site</Link></li>
-                    <li><Link className="dropdown-item" to="#">Profile</Link></li>
+                    <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
                     <li><Link className="dropdown-item" to="/logout">Sign out</Link></li>
                 </ul>
             </div>
