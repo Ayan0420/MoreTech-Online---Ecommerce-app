@@ -45,14 +45,14 @@ export default function AddProductForm() {
                 Swal.fire({
                     title: 'Something went wrong!',
                     icon: 'error',
-                    confirmButtonColor: "#0d6efd",
+                    confirmButtonColor: "#2c3e50",
                     text: 'Please try again'
                 });
             } else {
                 Swal.fire({
                     title: 'Product Added Successfully',
                     icon: 'success',
-                    confirmButtonColor: "#0d6efd"
+                    confirmButtonColor: "#2c3e50"
                 });
                 navigate('/admin-all-products');
             }
@@ -89,11 +89,11 @@ export default function AddProductForm() {
                             required
                         >
                           <option>Select category</option>
-                          <option value='PC'>PC</option>
+                          <option value='PC'>PCs</option>
                           <option value='Laptops'>Laptops</option>
                           <option value='Smartphones'>Smartphones</option>
                           <option value='Tablets'>Tablets</option>
-                          <option value='Headset'>Headset</option>
+                          <option value='Headsets/Headphones'>Headsets/Headphones</option>
                           <option value='Parts'>Parts</option>
                           <option value='Accessories'>Accessories</option>
                           <option value='Others'>Other Gadgets</option>

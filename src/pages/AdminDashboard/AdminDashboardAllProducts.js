@@ -17,6 +17,7 @@ export default function AdminDashboardAllProducts() {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
+        //check isAdmin
         if(user.isAdmin !== true) {
             Swal.fire({
                 title: 'You do not have permission to access this page!',

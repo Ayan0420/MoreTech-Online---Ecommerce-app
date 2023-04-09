@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
-import { Card, Col, Row, Button } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 
 import AvgRatingStars from "./AvgRatingStars";
 import ProductCard from "./ProductCard"
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
-export default function ProductSectionHome() {
+export default function ProductSectionAllProducts() {
 
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +24,7 @@ export default function ProductSectionHome() {
             
             setProducts(
                 //limit only to 12 cards
-                data.slice(0, 12).map(product => {
+                data.map(product => {
 
                     return(
                         <ProductCard 
@@ -45,15 +45,8 @@ export default function ProductSectionHome() {
     (isLoading) ?
         <Loading msg={"Loading All Products..."}/>
     :
-        <>
-            <Row>
-                {products}
-            </Row>
-            <div className="text-center my-3">
-                <Button as={Link} to='/products' variant="primary rounded-0">See more tech goodies!</Button>
-
-            </div>
-        </>
-        
+        <Row>
+            {products}
+        </Row>
   )
 }

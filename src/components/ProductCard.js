@@ -22,8 +22,8 @@ export default function ProductCard(props) {
 
                 <Card.Body className="d-flex flex-column">
 
-                    <Card.Title>{productName.slice(0,30)} {
-                        (productName.length >= 30) ? <span>...</span> : <></>
+                    <Card.Title className="fs-6">{productName.slice(0,45)} {
+                        (productName.length >= 45) ? <span>...</span> : <></>
                     }</Card.Title>
 
                     <Card.Text className="text-success mb-0">₱ {price}</Card.Text>

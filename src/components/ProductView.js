@@ -1,10 +1,14 @@
 import { Col, Row, Button, InputGroup, Form } from "react-bootstrap"
 import AvgRatingStars from "./AvgRatingStars"
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import Loading from "./Loading";
+import Swal from "sweetalert2";
 
 export default function ProductView() {
   
+  const navigate = useNavigate()
+
   const [productName, setProductName] = useState("")
   const [category, setCategory] = useState("")
   const [price, setPrice] = useState(0);
@@ -15,10 +19,11 @@ export default function ProductView() {
   const [avgRating, setAvgRating] = useState(0);
   const [isActive, setIsActive] = useState(true);
 
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const {productId} = useParams()
   const [isLoading, setIsLoading] = useState(true)
+
   const [isAddBtnActive, setIsAddBtnActive] = useState(true)
   const [isSubtBtnActive, setIsSubtBtnActive] = useState(true)
 
@@ -47,28 +52,93 @@ export default function ProductView() {
   
   function addQuantity(){
     if(quantity >= stocks){
-      setIsAddBtnActive(false)
+      Swal.fire({
+        title: 'Not enough stocks available.',
+        icon: 'warning',
+        confirmButtonColor: "#2c3e50"
+      });
       return
     }
     setQuantity(quantity + 1);
   }
 
   function subtractQuantity(){
-    if(quantity <= 0){
-      setIsSubtBtnActive(false)
+    if(quantity <= 1){
+      
+
       return
     }
     setQuantity(quantity - 1);
   }
 
+  function checkout(){
+
+    if(quantity === 0){
+      Swal.fire({
+        title: 'Please indicate the quantity.',
+        icon: 'warning',
+        confirmButtonColor: "#2c3e50"
+      });
+    } else {
+      Swal.fire({
+        title: 'Confirm Checkout',
+        html: `Product Name: <strong>${productName.slice(0, 30)}...</strong><h5 class="mt-3"> Quantity: <strong>${quantity}</strong></h5><h4 class="mt-3">TOTAL AMOUNT: <strong class="text-success">${quantity*price}</strong></h4>`, 
+        showCancelButton: true,
+        confirmButtonColor: "#2c3e50",
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Checkout',
+        showLoaderOnConfirm: true,
+  
+        preConfirm: () => {
+          return fetch(`${process.env.REACT_APP_API_URL}/orders/check-out`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                },
+                // JSON.stringify converts object data into stringified JSON
+                body: JSON.stringify({
+                  productId: [productId],
+                  quantity: [quantity]
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                return data
+            })
+            .catch(error => {
+              console.log(productId, quantity)
+              Swal.showValidationMessage(
+                `Checkout failed: ${error}`
+              )
+            })
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: 'Product Checked Out Successfully',
+            icon: 'success',
+            confirmButtonColor: "#2c3e50"
+          })
+        }
+        navigate(`/product/${productId}`) //change this to my orders
+      })
+    }
+
+  }
+
   return (
+    (isLoading) ? 
+    <Loading msg={"Loading..."}/>
+    :
     <>
     <div className="bg-white shadow-sm">
-
       <Row>
-        <Col md={5}><img src={`${productImg}`} className="img-fluid p-3" alt="" /></Col>
+        <Col md={5}><img src={`${productImg}`} className="img-fluid p-3 pt-4 mt-4" alt="" /></Col>
         <Col md={7}>
-          <div className="pe-4 my-5">
+          <div className="px-4 my-3 my-md-5">
 
             <h4 className="fw-bold text-primary">{productName}</h4>
 
@@ -90,46 +160,33 @@ export default function ProductView() {
             <p className="mt-3 fw-bold">Description:</p>
             <p>{description}</p>
             
-            <p className="mt-4"><span className="fw-bold"></span>{stocks} pieces available</p>
+            <p className="mt-4 fw-bold">{stocks} pieces available</p>
 
             <div className="mt-2">
               <p className="mb-1"> 
               Quantity:
               </p>
-              <InputGroup className="quantity mb-3">
-
-                {(isSubtBtnActive) ?
-                  <Button variant="outline-dark px-3 py-0 fw-bold fs-4" size="sm" onClick={subtractQuantity}>-</Button>
-                :
-                  <Button variant="outline-dark px-3 py-0 fw-bold fs-4 disabled" size="sm" onClick={subtractQuantity}>-</Button>
-                }
-
+              <InputGroup className="quantity mb-3">            
+                <Button variant="outline-dark px-3 py-0 fw-bold fs-4" size="sm" onClick={subtractQuantity}>-</Button>
+                
                 <Form.Control className="text-center"
                   onChange={(e) => setQuantity(e.target.value)}
                   value={quantity}
                 />
 
-                {(isAddBtnActive) ?
-
-                  <Button variant="outline-dark px-3 py-0 fw-bold fs-4" size="sm" onClick={addQuantity}>+</Button>
-                :
-                  <Button variant="outline-dark px-3 py-0 fw-bold fs-4 disabled" size="sm" onClick={addQuantity}>+</Button>
-                }
+                <Button variant="outline-dark px-3 py-0 fw-bold fs-4" size="sm" onClick={addQuantity}>+</Button>              
               </InputGroup>
               
               
 
 
               <Button variant="warning rounded-0 me-2">Add to Cart</Button>
-              <Button variant="primary rounded-0 me-2">Buy Now</Button>
+              <Button onClick={checkout} variant="primary rounded-0 me-2">Buy Now</Button>
             </div>
           </div>
 
         </Col>
       </Row>
-    </div>
-    <div className="bg-white mt-4 p-4">
-      <h4>Reviews</h4>
     </div>
     </>
   )

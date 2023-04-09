@@ -13,11 +13,12 @@ export default function Home() {
     
       <Container>
         
-        <h1 className='my-4 home-header text-primary bg-white p-3 text-center'>Get Your TECH Needs All in One Place!</h1>
+        <h1 className='my-4 home-header text-primary bg-white p-3 text-center'>Get All Your TECH Needs in One Place!</h1>
         <BannerCarousel />
 
         <h3 className='mt-5 mb-3 fw-bold bg-white p-3 text-center'>New Arrival!</h3>
         <ProductSectionHome />
+        
       </ Container>
     </>
   )

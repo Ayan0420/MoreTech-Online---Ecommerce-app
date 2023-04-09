@@ -5,15 +5,12 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { UserProvider } from './userContext';
 
-// import AppNavBar from './components/AppNavbar'
-// import CourseView from './components/CourseView'
-// import Courses from './pages/Courses';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login'
 import Logout from './pages/Logout';
+import NotFound from './pages/NotFound';
 import AdminDashboardAllProducts from './pages/AdminDashboard/AdminDashboardAllProducts';
-// import NotFound from './pages/NotFound';
 import AdminDashboardAddProduct from './pages/AdminDashboard/AdminDashboardAddProduct';
 import AdminDashboardArchiveProduct from './pages/AdminDashboard/AdminDashboardArchiveProduct';
 import AdminDashboardActiveProducts from './pages/AdminDashboard/AdminDashboardActiveProducts';
@@ -21,6 +18,9 @@ import AdminDashboardActivateProduct from './pages/AdminDashboard/AdminDashboard
 import AdminDashboardViewProduct from './pages/AdminDashboard/AdminDashboardViewProduct';
 import AdminDashboardUpdateProduct from './pages/AdminDashboard/AdminDashboardUpdateProduct';
 import ProductPage from './pages/ProductPage';
+import AllProducts from './pages/AllProducts';
+import Categories from './pages/Categories';
+import UserOrders from './pages/UserOrders';
 
 
 const App = () => {
@@ -76,7 +76,13 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/register" element={<Register />} />
+              <Route path='/products' element={<AllProducts/>} />
+              <Route path='/categories' element={<Categories/>} />
               <Route path='/product/:productId' element={<ProductPage/>} />
+
+              <Route path='/user-orders' element={<UserOrders/>} />
+
+
               <Route path='/admin-all-products' element={<AdminDashboardAllProducts/>} />
               <Route path='/admin-active-products' element={<AdminDashboardActiveProducts/>} />
               <Route path='/admin-add-product' element={<AdminDashboardAddProduct/>} />
@@ -85,7 +91,8 @@ const App = () => {
               <Route path='/admin-activate-product/:productId' element={<AdminDashboardActivateProduct/>} />
               <Route path='/admin-archive-product/:productId' element={<AdminDashboardArchiveProduct/>} />
               {/* "*" - is a wild card character that will match with any path that has not already been matched by previous routes. */}
-              {/* <Route path="*" element={<NotFound />} /> */}
+              
+              <Route path="*" element={<NotFound />} />
             </Routes>
       </Router>
     </UserProvider>

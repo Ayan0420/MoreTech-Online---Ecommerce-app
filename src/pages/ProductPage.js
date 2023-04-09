@@ -9,6 +9,9 @@ export default function ProductPage() {
         <AppNavBar />
         <Container className="mt-4">
             <ProductView />
+            <div className="bg-white mt-4 p-4">
+                 <h4>Reviews</h4>
+            </div>
         </Container>
     </>
   )

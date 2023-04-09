@@ -35,13 +35,13 @@ export default function AppNavBar() {
               <span className="text-light">|</span>
               <Nav.Link as={Link} to='/logout' className="py-0">Logout</Nav.Link>
               <span className="text-light">|</span>
-              <Nav.Link as={Link} to='/profile' className="py-0">My Account</Nav.Link>
+              <Nav.Link as={Link} to='/user-orders' className="py-0">My Account</Nav.Link>
             </>
             :
             <>
               <Nav.Link as={Link} to='/logout' className="py-0">Logout</Nav.Link>
               <span className="text-light">|</span>
-              <Nav.Link as={Link} to='/profile' className="py-0">My Account</Nav.Link>
+              <Nav.Link as={Link} to='/user-orders' className="py-0">My Account</Nav.Link>
             </>
             )
           :
