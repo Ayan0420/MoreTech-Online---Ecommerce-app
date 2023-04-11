@@ -1,7 +1,7 @@
 import { Col, Row, Button, InputGroup, Form } from "react-bootstrap"
 import AvgRatingStars from "./AvgRatingStars"
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loading from "./Loading";
 import Swal from "sweetalert2";
 import UserContext from "../userContext";
@@ -38,7 +38,6 @@ export default function ProductView(props) {
     }
   }
 
-
   useEffect(() => {
 
     setAdminView(adminView);
@@ -60,8 +59,7 @@ export default function ProductView(props) {
             
     })
 
-    
-  }, []);
+  }, [adminView, productId]);
   
   
   function addQuantity(){
@@ -86,6 +84,20 @@ export default function ProductView(props) {
   }
 
   function checkout(){
+    if(user.id === null){
+      Swal.fire({
+        title: 'Please login first!',
+        icon: 'warning',
+        confirmButtonColor: "#2c3e50",
+        confirmButtonText: "Login"
+
+      }).then(res => {
+        if(res.isConfirmed){
+          navigate('/login')
+        }
+      });
+      return
+    }
 
     if(stocks === 0){
       Swal.fire({
@@ -102,9 +114,9 @@ export default function ProductView(props) {
         icon: 'warning',
         confirmButtonColor: "#2c3e50"
       });
-    } else if(user.isAdmin == true || user.isSeller == true ){
+    } else if(user.isAdmin === true || user.isSeller === true ){
       Swal.fire({
-        title: `${user.isAdmin == true ? 'Admins' : 'Sellers'} are not allowed to purchase!`,
+        title: `${user.isAdmin === true ? 'Admins' : 'Sellers'} are not allowed to purchase!`,
         icon: 'error',
         confirmButtonColor: "#2c3e50"
       });
@@ -114,7 +126,7 @@ export default function ProductView(props) {
         html: `
           <h5>Product Name:<strong>${productName.slice(0, 30)}...</strong></h5>
           <h5> Unit Price: <strong>${price}</strong> | Quantity: <strong>${quantity}</strong></h5>
-          <h4 class="mt-3">TOTAL AMOUNT: <strong class="text-success">${quantity*price}</strong></h4>
+          <h4 class="mt-3">TOTAL AMOUNT: <strong class="text-success">₱ ${(quantity*price).toLocaleString()}</strong></h4>
           <div class="mt-5 text-start">
             <p class="mt-3 mb-0 small-font">Shipping to: <strong>${address}</strong></p>
             <p class="small-font">Payment Method: <strong>COD</strong></p>
@@ -168,7 +180,11 @@ export default function ProductView(props) {
 
   return (
     (isLoading) ? 
-    <Loading msg={"Loading..."}/>
+    
+    <div className="vh-100">
+      <Loading msg={"Loading product details..."}/>
+    </div>
+
     :
     <>
     <div className="bg-white shadow-sm">
@@ -182,10 +198,10 @@ export default function ProductView(props) {
             <div className="d-flex align-items-center">
 
               {
-                (avgRating == 0) ? <span>No ratings yet</span>
+                (avgRating === 0) ? <span>No ratings yet</span>
                 :
                 <>
-                  <span className="text-warning me-1">{avgRating}</span>
+                  <span className="text-warning me-1">{avgRating.toString().slice(0,3)}</span>
                   <span className="small-font"><AvgRatingStars avgRating={avgRating}/></span>
                   <span className="ms-1">({reviews.length})</span>
                 </>
@@ -208,7 +224,7 @@ export default function ProductView(props) {
 
             {isAdminViewActive ?
               <>
-              <p>Product Id: <strong>{productId}</strong></p>
+              <p className="mb-1">Product Id: <strong>{productId}</strong></p>
               <p>Availability: <strong>{isActive ? 'Yes' : 'No'}</strong></p>
               </>
             :
@@ -227,6 +243,7 @@ export default function ProductView(props) {
                   <Button variant="outline-dark px-3 py-0 fw-bold fs-4" size="sm" onClick={addQuantity}>+</Button>              
                 </InputGroup>
                 <Button variant="warning rounded-0 me-2">Add to Cart</Button>
+
                 <Button onClick={checkout} variant="primary rounded-0 me-2">Buy Now</Button>
               </div>
 

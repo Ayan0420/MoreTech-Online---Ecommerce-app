@@ -18,24 +18,22 @@ export default function ProductSectionHome() {
             if(data.length === 0) {
                 setProducts([]);
             }
-            console.log("avgRating rounded: " + Math.round(data.avgRating))
-
-
             
             setProducts(
                 //limit only to 12 cards
-                data.slice(0, 12).map(product => {
-
-                    return(
-                        <ProductCard 
-                            _id={product._id}
-                            productName={product.productName}
-                            productImg={product.productImg}
-                            price={product.price}
-                            avgRating={product.avgRating}
-                            author={product.author}
-                        />
-                    )
+                data.slice(0, 8).map(product => {
+                    if(product.avgRating > 4.5 && product.reviews.length >= 3){
+                        return(
+                            <ProductCard 
+                                _id={product._id}
+                                productName={product.productName}
+                                productImg={product.productImg}
+                                price={product.price}
+                                avgRating={product.avgRating}
+                                author={product.author}
+                            />
+                        )
+                    }
                 })
             )  
         })
@@ -43,18 +41,12 @@ export default function ProductSectionHome() {
 
   return (
     (isLoading) ?
-    <div className="vh-100">
-        <Loading msg={"Loading All Products..."}/>
-    </div>
+        <Loading msg={"Loading Featured Products..."}/>
     :
         <>
             <Row>
                 {products}
             </Row>
-            <div className="text-center my-3">
-                <Button as={Link} to='/products' variant="primary rounded-0">See more tech goodies!</Button>
-
-            </div>
         </>
         
   )

@@ -44,10 +44,14 @@ export default function UserInfo() {
               <Loading msg={"Loading user info..."}/>
               :
               <>
-                <h5>Name: {firstName} {lastName}</h5>
-                <h5>Email: {email}</h5>
-                <h5>Address: {address}</h5>
-                <h5>Contact Number: {mobileNo}</h5>
+                <h5>Name:</h5>
+                <h5 className='ps-4'><strong>{firstName} {lastName}</strong></h5>
+                <h5>Email:</h5>
+                <h5 className='ps-4'><strong>{email}</strong></h5>
+                <h5>Address:</h5>
+                <h5 className='ps-4'><strong>{address}</strong></h5>
+                <h5>Contact Number:</h5>
+                <h5 className='ps-4'><strong>{mobileNo}</strong></h5>
                 <Button size='sm' variant='primary mt-3'>Request for Edit</Button>
               </>
             }

@@ -43,7 +43,9 @@ export default function ProductSectionAllProducts() {
 
   return (
     (isLoading) ?
-        <Loading msg={"Loading All Products..."}/>
+        <div className="vh-100">
+            <Loading msg={"Loading All Products..."}/>
+        </div>
     :
         <Row>
             {products}

@@ -21,6 +21,7 @@ import ProductPage from './pages/ProductPage';
 import AllProducts from './pages/AllProducts';
 import Categories from './pages/Categories';
 import UserProfile from './pages/UserProfile';
+import ScrollToTop from './ScrollToTop';
 
 
 const App = () => {
@@ -76,6 +77,7 @@ const App = () => {
     <>
     <UserProvider value={{user, setUser, unsetUser}} >
       <Router>
+        <ScrollToTop>
         {/* <AppNavBar /> */}
             <Routes>
               <Route path="/" element={<Home />} />
@@ -100,6 +102,7 @@ const App = () => {
               
               <Route path="*" element={<NotFound />} />
             </Routes>
+        </ScrollToTop>
       </Router>
     </UserProvider>
     </>

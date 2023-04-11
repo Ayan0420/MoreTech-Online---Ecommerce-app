@@ -70,7 +70,6 @@ function MyVerticallyCenteredModal(props) {
     }
 
     useEffect(() => {
-      //Last progress
       if(rating !== 0 && comment !== ""){
         setIsBtnActive(true);
       } else {

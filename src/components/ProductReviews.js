@@ -37,7 +37,7 @@ export default function ProductReviews() {
             <span>No ratings and reviews yet. Buy now and be the first one to give reviews!</span>
             :
             <>
-            <h5 className="text-center"><span className="fs-2">{avgRating}</span><span className="mx-1">out of 5</span></h5>
+            <h5 className="text-center"><span className="fs-2">{avgRating.toString().slice(0,3)}</span><span className="mx-1">out of 5</span></h5>
             <h5 className="mb-4 text-center"><AvgRatingStars avgRating={avgRating}/></h5>
             </>
             }
