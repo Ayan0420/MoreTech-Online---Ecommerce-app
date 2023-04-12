@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import UserContext from '../userContext';
 import Swal from 'sweetalert2';
+import Loading from '../components/Loading';
 
 export default function Register() {
 
@@ -18,6 +19,8 @@ export default function Register() {
 	const [password1, setPassword1] = useState("");
 	const [password2, setPassword2] = useState("");
 
+    const [isLoading, setIsLoading] = useState(false)
+
 	const navigate = useNavigate();
 
 	// State to determine whether submit button is enabled or not
@@ -26,6 +29,8 @@ export default function Register() {
 	
 	// Checks the email if it does not exist and then registers the user
 	function checkEmailExists(e){
+
+        setIsLoading(true);
 
 		e.preventDefault();
 
@@ -48,6 +53,9 @@ export default function Register() {
 
 	// Registers the user
 	function registerUser(data){
+
+        setIsLoading(true);
+
 		//checks if data is true or false
 		if(data === false){
 			fetch(`${process.env.REACT_APP_API_URL}/users/register`, {
@@ -77,6 +85,7 @@ export default function Register() {
 					});
 					navigate('/login');
 				} else {
+                    setIsLoading(false);
 					Swal.fire({
 						title: 'Something went wrong!',
 						icon: 'error',
@@ -88,6 +97,7 @@ export default function Register() {
 					
 			})
             .catch(error => {
+                setIsLoading(false);
                 Swal.fire({
                     title: 'Something went wrong!',
                     icon: 'error',
@@ -96,6 +106,7 @@ export default function Register() {
                 })
             });
 		} else {
+            setIsLoading(false);
 			Swal.fire({
 				title: 'Duplicate Email Found!',
 				icon: 'error',
@@ -133,118 +144,128 @@ export default function Register() {
                 </div>
 
                 <Form onSubmit={(e) => checkEmailExists(e)} className='d-flex text-primary p-4 flex-column justify-content-center bg-light rounded-2 form-shadow register-form-width'>
-                    <h3 className='text-center mb-3'>Register</h3>
+                {isLoading ?
+                    <Loading msg={'Registering user...'} />
+                :
+                <>
+                <h3 className='text-center mb-3'>Register</h3>
 
-                    <Form.Text className="text-muted mb-2 text-center">
-                        We'll never share your information with anyone else.
-                    </Form.Text>
-                    <Row className='mb-2'>
-                        <Col sm={12} md={6}>
-                            <Form.Group controlId="firstName">
-                                <Form.Label>First Name</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter first name here"
-                                    value={firstName}
-                                    onChange={e => setFirstName(e.target.value)}
-                                    required
-                                />
-                            </Form.Group>
-                        </Col>
-                        <Col sm={12} md={6}>
-                            <Form.Group controlId="lastName">
-                                <Form.Label>Last Name</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter last name here"
-                                    value={lastName}
-                                    onChange={e => setLastName(e.target.value)}
-                                    required
-                                />
-                            </Form.Group>
-                        </Col>
-                    </Row>
+                <Form.Text className="text-muted mb-2 text-center">
+                    We'll never share your information with anyone else.
+                </Form.Text>
+                <Row className='mb-2'>
+                    <Col sm={12} md={6}>
+                        <Form.Group controlId="firstName">
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter first name here"
+                                value={firstName}
+                                onChange={e => setFirstName(e.target.value)}
+                                required
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col sm={12} md={6}>
+                        <Form.Group controlId="lastName">
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter last name here"
+                                value={lastName}
+                                onChange={e => setLastName(e.target.value)}
+                                required
+                            />
+                        </Form.Group>
+                    </Col>
+                </Row>
 
-                    <Row className='mb-2'>
-                        <Col sm={12} md={6}>
-                            <Form.Group controlId="email">
-                                <Form.Label>Email Address</Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    placeholder="Enter email here"
-                                    value={email}
-                                    onChange={e => setEmail(e.target.value)}
-                                    required
-                                />
-                            </Form.Group>
-                        </Col>
-                        <Col sm={12} md={6}>
-                            <Form.Group controlId="mobileNo">
-                                <Form.Label>Mobile Number</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter mobile number here"
-                                    value={mobileNo}
-                                    onChange={e => setMobileNo(e.target.value)}
-                                    required
-                                />
-                            </Form.Group>
-                        </Col>
-                    </Row>
+                <Row className='mb-2'>
+                    <Col sm={12} md={6}>
+                        <Form.Group controlId="email">
+                            <Form.Label>Email Address</Form.Label>
+                            <Form.Control
+                                type="email"
+                                placeholder="Enter email here"
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                                required
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col sm={12} md={6}>
+                        <Form.Group controlId="mobileNo">
+                            <Form.Label>Mobile Number</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter mobile number here"
+                                value={mobileNo}
+                                onChange={e => setMobileNo(e.target.value)}
+                                required
+                            />
+                        </Form.Group>
+                    </Col>
+                </Row>
+
+
+
+                <Form.Group controlId="address">
+                    <Form.Label>Address</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Enter your current address"
+                        value={address}
+                        onChange={e => setAddress(e.target.value)}
+                        required
+                    />
+                </Form.Group>
+
+                <Row className='mt-2'>
+                    <Col sm={12} md={6}>
+                        <Form.Group controlId="password1">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Password"
+                                value={password1}
+                                onChange={e => setPassword1(e.target.value)}
+                                required
+                            />
+                            <Form.Text className="text-muted">
+                                Must be 8 characters or more.
+                            </Form.Text>
+                        </Form.Group>
+                    </Col>
+                    <Col sm={12} md={6}>
+                        <Form.Group controlId="password2">
+                            <Form.Label>Verify Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Verify Password"
+                                value={password2}
+                                onChange={e => setPassword2(e.target.value)}
+                                required
+                            />
+                        </Form.Group>
+                    </Col>
+                </Row>
+
+
+                { isActive ? 
+
+                    <Button variant="primary my-3 align-self-center mb-auto" type="submit" id="submitBtn">Submit</Button>
+                    :
+                    <Button variant="secondary my-3 align-self-center mb-auto" type="submit" id="submitBtn" disabled>Submit</Button>
+
+                }
+
+                <span  className='mt-3 text-center login-bottom-text'>Already have an account? <Link to="/login" className="text-decoration-none">Login</Link></span>
+                </>
+
+
+                }
                     
-
                     
-                    <Form.Group controlId="address">
-                        <Form.Label>Address</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter your current address"
-                            value={address}
-                            onChange={e => setAddress(e.target.value)}
-                            required
-                        />
-                    </Form.Group>
-
-                    <Row className='mt-2'>
-                        <Col sm={12} md={6}>
-                            <Form.Group controlId="password1">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    placeholder="Password"
-                                    value={password1}
-                                    onChange={e => setPassword1(e.target.value)}
-                                    required
-                                />
-                                <Form.Text className="text-muted">
-                                    Must be 8 characters or more.
-                                </Form.Text>
-                            </Form.Group>
-                        </Col>
-                        <Col sm={12} md={6}>
-                            <Form.Group controlId="password2">
-                                <Form.Label>Verify Password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    placeholder="Verify Password"
-                                    value={password2}
-                                    onChange={e => setPassword2(e.target.value)}
-                                    required
-                                />
-                            </Form.Group>
-                        </Col>
-                    </Row>
-
-
-                    { isActive ? 
-
-                        <Button variant="primary my-3 align-self-center mb-auto" type="submit" id="submitBtn">Submit</Button>
-                        :
-                        <Button variant="secondary my-3 align-self-center mb-auto" type="submit" id="submitBtn" disabled>Submit</Button>
-
-                    }
-                    
-                    <span  className='mt-3 text-center login-bottom-text'>Already have an account? <Link to="/login" className="text-decoration-none">Login</Link></span>
                 </Form>
             </Container>
         </div>

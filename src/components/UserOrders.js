@@ -53,26 +53,26 @@ export default function UserOrders() {
                       <Accordion.Body>
                         <p>Products Purchased:</p>
                         <ul>
-                          <li>
-                            {
-                              order.products.map(product => {
-                                return (
-                                    <>
-                                      <p className='my-0'>Product Name: <Link to={`/product/${product.productId._id}`} target='_blank'>{product.productId.productName}</Link></p>
-                                      <p className='my-0'>Price: ₱ {product.productId.price}</p>
-                                      <p className='my-0'>Quantity: {product.quantity}</p>
-                                      <p className='my-0'>Subtotal: ₱ {product.subTotal}</p>
-                                      <div className='text-end'>
-                                        <AddProductreview productId={product.productId._id}/>
-                                      </div>
-                                    </>
-                                    )
-                                  })
-                            }
-                          </li>
+                   
+                          {
+                            order.products.map(product => {
+                              return (
+                                  <li>
+                                    <p className='my-0'>Product Name: <Link to={`/product/${product.productId._id}`} target='_blank'>{product.productId.productName}</Link></p>
+                                    <p className='my-0'>Price: ₱ {product.productId.price.toLocaleString()}</p>
+                                    <p className='my-0'>Quantity: {product.quantity}</p>
+                                    <p className='my-0'>Subtotal: ₱ {product.subTotal.toLocaleString()}</p>
+                                    <div className='text-end mb-2'>
+                                      <AddProductreview productId={product.productId._id}/>
+                                    </div>
+                                  </li>
+                                  )
+                                })
+                          }
+                         
                         </ul>
 
-                        <p className='fw-bold my-0'>Total: ₱ {order.totalAmount}</p>
+                        <p className='fw-bold my-0'>Total: ₱ {order.totalAmount.toLocaleString()}</p>
                         <p className='my-0'>Status: {order.status}</p>
                       </Accordion.Body>
                     </Accordion.Item>

@@ -34,15 +34,15 @@ export default function AdminSidebar() {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink activeClassName="active" to="/" className="nav-link text-white side-nav">
-                    <i className="fa-solid fa-circle-user me-3 fs-5"></i>
-                    Users
+                    <NavLink activeClassName="active" to="/admin-all-orders" className="nav-link text-white side-nav">
+                    <i className="fa-solid fa-table me-3 fs-5"></i>
+                    Orders
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink activeClassName="active" to="/" className="nav-link text-white side-nav">
-                    <i className="fa-solid fa-table me-3 fs-5"></i>
-                    Orders
+                    <NavLink activeClassName="active" to="/admin-registered-users" className="nav-link text-white side-nav">
+                    <i className="fa-solid fa-circle-user me-3 fs-5"></i>
+                    Users
                     </NavLink>
                 </li>
             </ul>

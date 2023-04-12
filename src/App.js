@@ -22,6 +22,10 @@ import AllProducts from './pages/AllProducts';
 import Categories from './pages/Categories';
 import UserProfile from './pages/UserProfile';
 import ScrollToTop from './ScrollToTop';
+import AdminDashboardsUsers from './pages/AdminDashboard/AdminDashboardsUsers';
+import RedirectToUsers from './components/RedirectToUsers';
+import RedirectToProductPage from './components/RedirectToProductPage'
+import AdminDashboardAllOrders from './pages/AdminDashboard/AdminDashboardAllOrders';
 
 
 const App = () => {
@@ -87,6 +91,7 @@ const App = () => {
               <Route path='/products' element={<AllProducts/>} />
               <Route path='/categories' element={<Categories/>} />
               <Route path='/product/:productId' element={<ProductPage/>} />
+              <Route path='/redirect/:productId' element={<RedirectToProductPage/>} />
 
               <Route path='/profile' element={<UserProfile/>} />
 
@@ -98,6 +103,10 @@ const App = () => {
               <Route path='/admin-update-product/:productId' element={<AdminDashboardUpdateProduct/>} />
               <Route path='/admin-activate-product/:productId' element={<AdminDashboardActivateProduct/>} />
               <Route path='/admin-archive-product/:productId' element={<AdminDashboardArchiveProduct/>} />
+              <Route path='/admin-registered-users' element={<AdminDashboardsUsers />} />
+              <Route path='/admin-all-orders' element={<AdminDashboardAllOrders />} />
+              <Route path='/admin-redirect' element={<RedirectToUsers />} />
+
               {/* "*" - is a wild card character that will match with any path that has not already been matched by previous routes. */}
               
               <Route path="*" element={<NotFound />} />

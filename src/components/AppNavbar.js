@@ -1,5 +1,5 @@
 
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import {InputGroup, Form, Button, Nav, Navbar, Container, Offcanvas} from 'react-bootstrap'
 
@@ -10,13 +10,33 @@ import Cart from "./Cart"
 
 export default function AppNavBar() {
 
-  // const [user, setUser] = useState(localStorage.getItem('email'));
+  const {user} = useContext(UserContext);
   const [show, setShow] = useState(false);
 
+  const [numberOfCartItems, setNumberOfCartItems] = useState(0)
+  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const pulledDataFromCart = (data) => {
+    console.log(data)
+    setNumberOfCartItems(data)
+  };
 
-  const {user} = useContext(UserContext);
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/cart/my-cart`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.response === false){
+        return
+      } else {
+        setNumberOfCartItems(data.length);
+      }
+    });
+  }, []) 
 
   return (
     <>
@@ -89,18 +109,28 @@ export default function AppNavBar() {
           </Navbar.Collapse>
               <Nav>
 
-                <Nav.Link as={Link} onClick={handleShow}><i className="fa-solid fa-cart-shopping fs-3"></i></Nav.Link>
+                <Link className='p-0 text-light cart-button position-relative me-3' onClick={handleShow}>
+                  <i className="fa-solid fa-cart-shopping fs-3" title="Open Cart"></i>
+                  <span className='position-absolute top-0 start-90 translate-middle badge rounded-pill bg-danger'>{numberOfCartItems}</span>
+                </Link>
 
               </Nav>
         </Container>
     </Navbar>
     
-              <Offcanvas show={show} onHide={handleClose} placement='end'>
+              <Offcanvas show={show} onHide={handleClose} placement='end' className="">
                 <Offcanvas.Header closeButton>
-                  <Offcanvas.Title>My Cart</Offcanvas.Title>
+                  <Offcanvas.Title className='fw-bold'>My Cart</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                  <Cart />
+                  { show ?
+                  <Cart 
+                  pulledDataFromCart={pulledDataFromCart}
+                  />
+                  :
+                  <></> 
+                  }
+
                 </Offcanvas.Body>
               </Offcanvas>
     </>

@@ -28,6 +28,7 @@ export default function ProductSectionHome() {
 
                     return(
                         <ProductCard 
+                            key={product._id}
                             _id={product._id}
                             productName={product.productName}
                             productImg={product.productImg}

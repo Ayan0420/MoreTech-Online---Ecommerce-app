@@ -11,7 +11,6 @@ export default function ProductView(props) {
   const navigate = useNavigate()
   const {user} = useContext(UserContext)
   const address = user.address;
-  console.log(user)
   const [productName, setProductName] = useState("")
   const [category, setCategory] = useState("")
   const [price, setPrice] = useState(0);
@@ -73,7 +72,6 @@ export default function ProductView(props) {
     }
     setQuantity(quantity + 1);
   }
-
   function subtractQuantity(){
     if(quantity <= 1){
       
@@ -82,7 +80,6 @@ export default function ProductView(props) {
     }
     setQuantity(quantity - 1);
   }
-
   function checkout(){
     if(user.id === null){
       Swal.fire({
@@ -124,8 +121,8 @@ export default function ProductView(props) {
       Swal.fire({
         title: 'Confirm Checkout',
         html: `
-          <h5>Product Name:<strong>${productName.slice(0, 30)}...</strong></h5>
-          <h5> Unit Price: <strong>${price}</strong> | Quantity: <strong>${quantity}</strong></h5>
+          <h5>Product Name:<strong>${productName.length > 30 ? `${productName.slice(0, 25)}...` : productName}</strong></h5>
+          <h5> Unit Price: <strong>₱ ${price.toLocaleString()}</strong> | Quantity: <strong>${quantity}</strong></h5>
           <h4 class="mt-3">TOTAL AMOUNT: <strong class="text-success">₱ ${(quantity*price).toLocaleString()}</strong></h4>
           <div class="mt-5 text-start">
             <p class="mt-3 mb-0 small-font">Shipping to: <strong>${address}</strong></p>
@@ -153,7 +150,6 @@ export default function ProductView(props) {
             })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 return data
             })
             .catch(error => {
@@ -176,6 +172,39 @@ export default function ProductView(props) {
       })
     }
 
+  }
+  function addToCart(){
+
+    fetch(`${process.env.REACT_APP_API_URL}/cart/add-to-cart`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        // JSON.stringify converts object data into stringified JSON
+        body: JSON.stringify({
+          productId: productId,
+          quantity: quantity
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+      Swal.fire({
+        title: `${data.message}`,
+        icon: 'success',
+        confirmButtonColor: "#2c3e50"
+      });
+      navigate(`/redirect/${productId}`)
+    })
+    .catch(error => {
+      Swal.fire({
+        title: 'Something Went Wrong!',
+        text: `${error}`,
+        icon: 'error',
+        confirmButtonColor: "#2c3e50"
+      });
+      
+    })
   }
 
   return (
@@ -242,7 +271,7 @@ export default function ProductView(props) {
 
                   <Button variant="outline-dark px-3 py-0 fw-bold fs-4" size="sm" onClick={addQuantity}>+</Button>              
                 </InputGroup>
-                <Button variant="warning rounded-0 me-2">Add to Cart</Button>
+                <Button onClick={addToCart} variant="warning rounded-0 me-2">Add to Cart</Button>
 
                 <Button onClick={checkout} variant="primary rounded-0 me-2">Buy Now</Button>
               </div>

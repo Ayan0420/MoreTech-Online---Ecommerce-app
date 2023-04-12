@@ -44,7 +44,7 @@ export default function ProductReviews() {
             {
                 reviews.map(review => {
                     return (
-                        <Row className="bg-light p-3 rounded-3 mb-2">
+                        <Row key={review._id} className="bg-light p-3 rounded-3 mb-2">
                             <Col md={2}>
                                 <span>{review.userId.firstName} {review.userId.lastName.slice(0,1)}.</span>
                             </Col>

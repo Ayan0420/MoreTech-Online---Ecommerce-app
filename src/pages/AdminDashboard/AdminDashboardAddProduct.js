@@ -32,7 +32,7 @@ export default function AdminDashboardAddProduct() {
 
         <Col xs={9}>
         
-            <h1 className="mt-5">Add a New Product</h1>
+            <h1 className="mt-5">Add New Product</h1>
             <AddProductForm />
   
         </Col>
