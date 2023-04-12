@@ -1,4 +1,4 @@
-import { Col, Row, Button, InputGroup, Form } from "react-bootstrap"
+import { Col, Row, Button, InputGroup, Form, Spinner } from "react-bootstrap"
 import AvgRatingStars from "./AvgRatingStars"
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -25,6 +25,7 @@ export default function ProductView(props) {
 
   const {productId} = useParams()
   const [isLoading, setIsLoading] = useState(true)
+  const [isBtnLoading, setIsBtnLoading] = useState(false)
   const [isAdminViewActive, setIsAdminViewActive] = useState(false);
 
   const adminView = props.adminView;
@@ -174,7 +175,7 @@ export default function ProductView(props) {
 
   }
   function addToCart(){
-
+    setIsBtnLoading(true);
     fetch(`${process.env.REACT_APP_API_URL}/cart/add-to-cart`, {
         method: 'POST',
         headers: {
@@ -189,6 +190,7 @@ export default function ProductView(props) {
     })
     .then(res => res.json())
     .then(data => {
+      setIsBtnLoading(false);
       Swal.fire({
         title: `${data.message}`,
         icon: 'success',
@@ -197,6 +199,7 @@ export default function ProductView(props) {
       navigate(`/redirect/${productId}`)
     })
     .catch(error => {
+      setIsBtnLoading(false);
       Swal.fire({
         title: 'Something Went Wrong!',
         text: `${error}`,
@@ -271,7 +274,11 @@ export default function ProductView(props) {
 
                   <Button variant="outline-dark px-3 py-0 fw-bold fs-4" size="sm" onClick={addQuantity}>+</Button>              
                 </InputGroup>
-                <Button onClick={addToCart} variant="warning rounded-0 me-2">Add to Cart</Button>
+                { isBtnLoading ? 
+                  <Button variant="warning rounded-0 me-2" disabled>Adding to Cart... <Spinner size="sm" variant="light"/></Button>
+                :
+                  <Button onClick={addToCart} variant="warning rounded-0 me-2">Add to Cart</Button>
+                }
 
                 <Button onClick={checkout} variant="primary rounded-0 me-2">Buy Now</Button>
               </div>

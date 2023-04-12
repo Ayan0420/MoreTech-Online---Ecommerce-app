@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import {InputGroup, Form, Button, Nav, Navbar, Container, Offcanvas} from 'react-bootstrap'
 
 
-import {Link} from 'react-router-dom';
+import {Link, useNavigate, } from 'react-router-dom';
 import UserContext from '../userContext';
 import Cart from "./Cart"
 
@@ -13,12 +13,16 @@ export default function AppNavBar() {
   const {user} = useContext(UserContext);
   const [show, setShow] = useState(false);
 
+  const navigate = useNavigate()
+
   const [numberOfCartItems, setNumberOfCartItems] = useState(0)
+  const [search, setSearch] = useState('')
   
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  //to update the numberOfCartItems when we delete cart items
   const pulledDataFromCart = (data) => {
-    console.log(data)
     setNumberOfCartItems(data)
   };
 
@@ -37,6 +41,13 @@ export default function AppNavBar() {
       }
     });
   }, []) 
+
+
+  function searchFunc(e){
+    e.preventDefault();
+    
+    navigate(`/search?searchQuery=${search}`)
+  }
 
   return (
     <>
@@ -97,11 +108,18 @@ export default function AppNavBar() {
 
               <InputGroup className="mx-4 text-center align-self-center" >
                   <Form.Control
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        searchFunc(e)
+                      }
+                }}
                   placeholder="Search Products"
                   aria-label="Search Products"
                   aria-describedby="basic-addon2"
                   />
-                  <Button variant="outline-secondary" id="button-addon2">
+                  <Button onClick={e => searchFunc(e)} variant="outline-secondary" id="button-addon2">
                   <i className="fa-solid fa-magnifying-glass"></i>
                   </Button>
               </InputGroup>

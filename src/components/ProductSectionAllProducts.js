@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react"
-import { Card, Col, Row } from "react-bootstrap";
-
-import AvgRatingStars from "./AvgRatingStars";
+import { Row } from "react-bootstrap";
 import ProductCard from "./ProductCard"
-import { Link } from "react-router-dom";
 import Loading from "./Loading";
 export default function ProductSectionAllProducts() {
 

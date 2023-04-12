@@ -26,6 +26,7 @@ import AdminDashboardsUsers from './pages/AdminDashboard/AdminDashboardsUsers';
 import RedirectToUsers from './components/RedirectToUsers';
 import RedirectToProductPage from './components/RedirectToProductPage'
 import AdminDashboardAllOrders from './pages/AdminDashboard/AdminDashboardAllOrders';
+import Search from './pages/Search';
 
 
 const App = () => {
@@ -92,6 +93,7 @@ const App = () => {
               <Route path='/categories' element={<Categories/>} />
               <Route path='/product/:productId' element={<ProductPage/>} />
               <Route path='/redirect/:productId' element={<RedirectToProductPage/>} />
+              <Route path='/search' element={<Search/>} />
 
               <Route path='/profile' element={<UserProfile/>} />
 
