@@ -140,3 +140,57 @@ body{
 .search-container{
   min-height: 100vh;
 }
+
+.category-name{
+  background-color: #ecf0f1c9;
+  padding: 1rem;
+}
+
+.home-category-card{
+  
+  --initialBgColor: #272838;
+  --slideBgColor: #13967d;
+
+  color: var(--initialTextColor);
+
+  background-image: linear-gradient(90deg,
+      var(--initialBgColor) 0%,
+      var(--initialBgColor) 50%,
+      var(--slideBgColor) 50%,
+      var(--slideBgColor) 100%);
+  background-size: 300%;
+  transition: all .5s;
+    
+  transition-delay: 0.0s, 0.15s;
+}
+
+.home-category-card:hover{
+  transform: scale(1.1);
+  color: var(--slideTextColor);
+  cursor: pointer;
+  background-position: -50% 100%;
+}
+
+.home-category-card-see-more{
+
+  --initialBgColor: #f39c12;
+  --slideBgColor: #13967d;
+
+  color: var(--initialTextColor);
+
+  background-image: linear-gradient(90deg,
+      var(--initialBgColor) 0%,
+      var(--initialBgColor) 50%,
+      var(--slideBgColor) 50%,
+      var(--slideBgColor) 100%);
+  background-size: 300%;
+  transition: all .5s;
+    
+  transition-delay: 0.0s, 0.15s;
+}
+.home-category-card-see-more:hover{
+  transform: scale(1.1);
+  color: var(--slideTextColor);
+  cursor: pointer;
+  background-position: -50% 100%;
+}

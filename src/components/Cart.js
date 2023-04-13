@@ -63,14 +63,15 @@ export default function Cart({pulledDataFromCart}) {
     .then(data => {
       if(id === undefined){
         setCart([]);
-        pulledDataFromCart(0)
       } else if(ids === undefined){
         //this is to remove the deleted item in the cart array state
         setCart(cart.filter(item => {
           return item._id !== id
         }))
-        pulledDataFromCart(cart.length-1)
+
       }
+      //to update the cart icon component
+      pulledDataFromCart()
       
       Swal.fire({
         title: `${data.message}`,
@@ -157,6 +158,8 @@ export default function Cart({pulledDataFromCart}) {
           icon: 'success',
           confirmButtonColor: "#2c3e50"
         })
+        
+        pulledDataFromCart() //update cart icon component
         navigate(`/profile`) //change this to my orders
       }
     })
@@ -171,9 +174,10 @@ export default function Cart({pulledDataFromCart}) {
     <>
 
       {(cart.length === 0) ?
-      <>
-        <h4 className="text-center border border-1 p-4 rounded-2 cart-item-card">Cart is empty.</h4>
-      </>
+      <div className="p-3 mt-5">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8vxcXbyvy5JHHV_7wMO_HQv-j6aZxX0I5MA&usqp=CAU" className="img-fluid" alt="" />
+        <h5 className="text-center">Cart is empty.</h5>
+      </div>
       :
       <>
       <div className="mx-2">
@@ -181,7 +185,7 @@ export default function Cart({pulledDataFromCart}) {
           cart.map((cartItem, index) => {
             return (
               <Row key={cartItem._id} className="mb-2">
-                <Col className="border border-1 py-2 cart-item-card">
+                <Col className="border border-1 rounded-2 py-2 cart-item-card">
                   <div className="d-flex mb-2">
                     <span>Item #{index + 1}</span>
 
@@ -215,7 +219,7 @@ export default function Cart({pulledDataFromCart}) {
         }
       </div>
 
-      <div className="mt-5 border-top pt-4">
+      <div className="mt-4 border-top pt-4">
           <h5>Total Amount: <strong>₱{totalAmount.toLocaleString()}</strong></h5>
         <div className="text-end mt-5">
           <Button onClick={() => deleteCartItem({ids: forCheckOutArr})} variant="danger me-2 rounded-0" title="Buy this product"><span  className="">Clear Cart</span></Button>

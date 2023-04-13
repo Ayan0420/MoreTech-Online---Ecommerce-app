@@ -14,11 +14,13 @@ export default function ProductCard(props) {
     } = props;
 
   return (
-    <Col md={3} className="mb-4 d-flex">
-        <Link className="text-decoration-none d-flex" to={`/product/${_id}`}>
+    <Col xs={12} md={6} lg={3} className="mb-4 d-md-flex">
+        <Link className="text-decoration-none d-md-flex" to={`/product/${_id}`}>
             <Card className="bg-light text-primary product-card border-0">
-
+                <div className="text-center">
                 <Card.Img src={`${productImg}`} className="img-fluid card-img rounded-0 rounded-top" alt="Card image" />
+
+                </div>
 
                 <Card.Body className="d-flex flex-column">
 

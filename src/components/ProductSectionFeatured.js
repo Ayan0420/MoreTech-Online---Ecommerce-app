@@ -25,6 +25,7 @@ export default function ProductSectionHome() {
                     if(product.avgRating > 4.5 && product.reviews.length >= 3){
                         return(
                             <ProductCard 
+                                key={product._id}
                                 _id={product._id}
                                 productName={product.productName}
                                 productImg={product.productImg}

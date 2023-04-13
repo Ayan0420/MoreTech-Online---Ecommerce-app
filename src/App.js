@@ -19,7 +19,6 @@ import AdminDashboardViewProduct from './pages/AdminDashboard/AdminDashboardView
 import AdminDashboardUpdateProduct from './pages/AdminDashboard/AdminDashboardUpdateProduct';
 import ProductPage from './pages/ProductPage';
 import AllProducts from './pages/AllProducts';
-import Categories from './pages/Categories';
 import UserProfile from './pages/UserProfile';
 import ScrollToTop from './ScrollToTop';
 import AdminDashboardsUsers from './pages/AdminDashboard/AdminDashboardsUsers';
@@ -27,7 +26,8 @@ import RedirectToUsers from './components/RedirectToUsers';
 import RedirectToProductPage from './components/RedirectToProductPage'
 import AdminDashboardAllOrders from './pages/AdminDashboard/AdminDashboardAllOrders';
 import Search from './pages/Search';
-
+import AllCategories from './pages/AllCategories';
+import Category from './pages/Category';
 
 const App = () => {
 
@@ -89,10 +89,11 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/register" element={<Register />} />
-              <Route path='/products' element={<AllProducts/>} />
-              <Route path='/categories' element={<Categories/>} />
-              <Route path='/product/:productId' element={<ProductPage/>} />
-              <Route path='/redirect/:productId' element={<RedirectToProductPage/>} />
+              <Route path='/products' element={<AllProducts />} />
+              <Route path='/categories' element={<AllCategories />} />
+              <Route path='/category/:category' element={<Category />} />
+              <Route path='/product/:productId' element={<ProductPage />} />
+              <Route path='/redirect/:productId' element={<RedirectToProductPage />} />
               <Route path='/search' element={<Search/>} />
 
               <Route path='/profile' element={<UserProfile/>} />

@@ -18,10 +18,7 @@ export default function ProductSectionHome() {
             if(data.length === 0) {
                 setProducts([]);
             }
-            console.log("avgRating rounded: " + Math.round(data.avgRating))
 
-
-            
             setProducts(
                 //limit only to 12 cards
                 data.slice(0, 12).map(product => {
@@ -53,7 +50,7 @@ export default function ProductSectionHome() {
                 {products}
             </Row>
             <div className="text-center my-3">
-                <Button as={Link} to='/products' variant="primary rounded-0">See more tech goodies!</Button>
+                <Button as={Link} to='/products' variant="primary rounded-0">See more products</Button>
 
             </div>
         </>

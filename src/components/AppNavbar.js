@@ -22,8 +22,25 @@ export default function AppNavBar() {
   const handleShow = () => setShow(true);
 
   //to update the numberOfCartItems when we delete cart items
-  const pulledDataFromCart = (data) => {
-    setNumberOfCartItems(data)
+  // const pulledDataFromCart = (data) => {
+  //   setNumberOfCartItems(data)
+  // };
+  //test
+  const pulledDataFromCart = (clear) => {
+    fetch(`${process.env.REACT_APP_API_URL}/cart/my-cart`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      if(data.response === false){
+        setNumberOfCartItems(0);
+      } else {
+        setNumberOfCartItems(data.length);
+      }
+    });
   };
 
   useEffect(() => {
@@ -45,15 +62,15 @@ export default function AppNavBar() {
 
   function searchFunc(e){
     e.preventDefault();
-    
     navigate(`/search?searchQuery=${search}`)
   }
 
+  
   return (
     <>
-    <Navbar className="nav navbar-dark pb-0 secondary-nav" bg="primary">
+    <Navbar className="nav navbar-dark pb-0 secondary-nav hidden" bg="primary">
       <Container>
-        <Nav>
+        <Nav className='d-none d-md-block'>
           <span className='text-light'><i className="fa-solid fa-map-location"></i></span>
           <span className='text-light ms-2' >Gingoog City, Misamis Oriental, Philippines, 9014</span>
         </Nav>
@@ -106,7 +123,7 @@ export default function AppNavBar() {
                   {/* <Nav.Link as={Link} to='/categories'>Hot!</Nav.Link> */}
               </Nav>
 
-              <InputGroup className="mx-4 text-center align-self-center" >
+              <InputGroup className="mx-md-4 text-center align-self-center" >
                   <Form.Control
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
@@ -123,16 +140,15 @@ export default function AppNavBar() {
                   <i className="fa-solid fa-magnifying-glass"></i>
                   </Button>
               </InputGroup>
-
-          </Navbar.Collapse>
-              <Nav>
-
-                <Link className='p-0 text-light cart-button position-relative me-3' onClick={handleShow}>
+              
+              <Nav className='text-center mt-3 mt-md-0'>
+                <Button className='p-0 text-light cart-button position-relative me-3' onClick={handleShow}>
                   <i className="fa-solid fa-cart-shopping fs-3" title="Open Cart"></i>
                   <span className='position-absolute top-0 start-90 translate-middle badge rounded-pill bg-danger'>{numberOfCartItems}</span>
-                </Link>
-
+                </Button>
               </Nav>
+
+          </Navbar.Collapse>
         </Container>
     </Navbar>
     

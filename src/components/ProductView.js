@@ -175,6 +175,31 @@ export default function ProductView(props) {
 
   }
   function addToCart(){
+    
+    if(user.id === null){
+      Swal.fire({
+        title: 'Please login first!',
+        icon: 'warning',
+        confirmButtonColor: "#2c3e50",
+        confirmButtonText: "Login"
+
+      }).then(res => {
+        if(res.isConfirmed){
+          navigate('/login')
+        }
+      });
+      return
+    }
+
+    if(user.isAdmin === true || user.isSeller === true ){
+      Swal.fire({
+        title: `${user.isAdmin === true ? 'Admins' : 'Sellers'} are not allowed to purchase!`,
+        icon: 'error',
+        confirmButtonColor: "#2c3e50"
+      });
+        return
+    }
+
     setIsBtnLoading(true);
     fetch(`${process.env.REACT_APP_API_URL}/cart/add-to-cart`, {
         method: 'POST',

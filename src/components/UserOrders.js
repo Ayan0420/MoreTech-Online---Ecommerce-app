@@ -55,9 +55,9 @@ export default function UserOrders() {
                         <ul>
                    
                           {
-                            order.products.map(product => {
+                            order.products.map((product, index) => {
                               return (
-                                  <li>
+                                  <li key={index}>
                                     <p className='my-0'>Product Name: <Link to={`/product/${product.productId._id}`} target='_blank'>{product.productId.productName}</Link></p>
                                     <p className='my-0'>Price: ₱ {product.productId.price.toLocaleString()}</p>
                                     <p className='my-0'>Quantity: {product.quantity}</p>

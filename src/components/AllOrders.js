@@ -17,7 +17,6 @@ export default function UserOrders() {
 
   const [isLoading, setIsLoading] = useState(true)
 
-  console.log(products)
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/orders`, {
       headers: {
@@ -52,7 +51,7 @@ export default function UserOrders() {
                 :
                 orders.map((order, index) => {
                   return (
-                    <Accordion.Item eventKey={`${index}`}>
+                    <Accordion.Item eventKey={`${order._id}`}>
                       <Accordion.Header className='d-flex'>
                       
                             <span>Customer: {order.userId.firstName} {order.userId.lastName}</span>
@@ -65,7 +64,7 @@ export default function UserOrders() {
                       <Accordion.Body>
                         <Row>
                           <Col>
-                            <p>Order ID: <span class='fw-bold'>{order._id }</span></p>
+                            <p>Order ID: <span className='fw-bold'>{order._id }</span></p>
                             <h5>Customer Info:</h5>
                             <p className='ms-3 mb-0'>Name: <strong>{order.userId.firstName} {order.userId.lastName}</strong></p>
                             <p className='ms-3 mb-0'>User ID: <strong>{order.userId._id}</strong></p>

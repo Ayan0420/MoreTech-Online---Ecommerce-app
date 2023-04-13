@@ -13,16 +13,15 @@ export default function Search() {
     const [searchResult, setSearchResult] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
-    console.log('searchResult', searchResult)
-
     useEffect(() => {
+        setIsLoading(true)
         fetch(`${process.env.REACT_APP_API_URL}/products/search?searchQuery=${searchParams.get('searchQuery')}`)
           .then(res => res.json())
           .then(data => {
-            // if(data.length === 0){
-            //     setIsLoading(false)
-            //     setSearchResult([])
-            // }
+            if(data.length === 0){
+                setIsLoading(false)
+                setSearchResult([])
+            }
             setSearchResult(
                 data.map(product => {
                     setIsLoading(false)
@@ -48,11 +47,11 @@ export default function Search() {
         <AppNavBar />
     </div>
     <Container className='search-container'>
-        <h3 className='mt-5 mb-3 fw-bold bg-white p-3 text-center'>Search result for "{searchParams.get('searchQuery')}"</h3>
+        <h3 className='mt-3 mt-md-4 mb-3 fw-bold bg-white p-3 text-center'>Search result for "{searchParams.get('searchQuery')}"</h3>
 
         {(isLoading) ?
             <div className="vh-100">
-                <Loading msg={"Loading All Products..."}/>
+                <Loading msg={"Searching..."}/>
             </div>
         :
             <>
