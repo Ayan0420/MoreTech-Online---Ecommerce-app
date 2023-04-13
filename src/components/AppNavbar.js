@@ -81,15 +81,15 @@ export default function AppNavBar() {
             <>
               <Nav.Link as={Link} to='/admin-active-products' className="py-0">Admin Dashboard</Nav.Link>
               <span className="text-light">|</span>
-              <Nav.Link as={Link} to='/logout' className="py-0">Logout</Nav.Link>
+              <Nav.Link as={Link} to='/profile' className="py-0">{user.firstName}</Nav.Link>
               <span className="text-light">|</span>
-              <Nav.Link as={Link} to='/profile' className="py-0">My Account</Nav.Link>
+              <Nav.Link as={Link} to='/logout' className="py-0">Logout</Nav.Link>
             </>
             :
             <>
-              <Nav.Link as={Link} to='/logout' className="py-0">Logout</Nav.Link>
+              <Nav.Link as={Link} to='/profile' className="py-0">{user.firstName} {user.lastName}</Nav.Link>
               <span className="text-light">|</span>
-              <Nav.Link as={Link} to='/profile' className="py-0">My Account</Nav.Link>
+              <Nav.Link as={Link} to='/logout' className="py-0">Logout</Nav.Link>
             </>
             )
           :

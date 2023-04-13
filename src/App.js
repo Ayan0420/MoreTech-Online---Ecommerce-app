@@ -37,6 +37,7 @@ const App = () => {
     isSeller: null,
     address: null,
     firstName: null,
+    lastName: null,
   });
 
   // Function for clearing localStorage on logout
@@ -61,7 +62,8 @@ const App = () => {
           isAdmin: data.isAdmin,
           isSeller: data.isSeller,
           address: data.address,
-          firstName: data.firstName
+          firstName: data.firstName,
+          lastName: data.lastName
         });
 
       // User is logged out
@@ -71,7 +73,8 @@ const App = () => {
           isAdmin: null,
           isSeller: null,
           address: null,
-          firstName: null
+          firstName: null,
+          lastName: null
         })
       }
     })

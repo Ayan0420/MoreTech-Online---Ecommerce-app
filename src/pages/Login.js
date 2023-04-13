@@ -86,7 +86,8 @@ export default function Login() {
 				isAdmin: data.isAdmin,
 				isSeller: data.isSeller,
 				address: data.address,
-				firstName: data.firstName
+				firstName: data.firstName,
+				lastName: data.lastName
 				
 			})
 		});
