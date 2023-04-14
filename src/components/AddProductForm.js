@@ -93,7 +93,7 @@ export default function AddProductForm() {
                           <option value='Laptops'>Laptops</option>
                           <option value='Smartphones'>Smartphones</option>
                           <option value='Tablets'>Tablets</option>
-                          <option value='Console'>Console</option>
+                          <option value='Consoles'>Consoles</option>
                           <option value='Headsets/Headphones'>Headsets/Headphones</option>
                           <option value='Parts'>Parts</option>
                           <option value='Accessories'>Accessories</option>
