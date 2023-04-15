@@ -22,7 +22,7 @@ export default function ProductSectionHome() {
             setProducts(
                 //limit only to 12 cards
                 data.slice(0, 8).map(product => {
-                    if(product.avgRating > 4.5 && product.reviews.length >= 3){
+                    if(product.avgRating >= 4.5 && product.reviews.length >= 3){
                         return(
                             <ProductCard 
                                 key={product._id}
