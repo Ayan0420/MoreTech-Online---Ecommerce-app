@@ -101,7 +101,6 @@ const App = () => {
 
               <Route path='/profile' element={<UserProfile/>} />
 
-
               <Route path='/admin-all-products' element={<AdminDashboardAllProducts/>} />
               <Route path='/admin-active-products' element={<AdminDashboardActiveProducts/>} />
               <Route path='/admin-add-product' element={<AdminDashboardAddProduct/>} />
@@ -114,7 +113,6 @@ const App = () => {
               <Route path='/admin-redirect' element={<RedirectToUsers />} />
 
               {/* "*" - is a wild card character that will match with any path that has not already been matched by previous routes. */}
-              
               <Route path="*" element={<NotFound />} />
             </Routes>
         </ScrollToTop>
