@@ -110,6 +110,16 @@ export default function Login() {
 		:
 
     <div className='bg-primary'>
+		<div className='d-flex fixed-top m-4 '>
+			<div className='p-3 rounded-2' style={{backgroundColor: "#82ed6fd3"}}>
+				<p className='mb-0 text-center fw-bold'>Test User</p>
+				<p className='mb-0'>email: ada@gmail.com</p>
+				<p className='mb-0'>pwd: password1234</p>
+				<p className='mb-0 text-center mt-2 fw-bold'>Admin User</p>
+				<p className='mb-0'>email: admin@gmail.com</p>
+				<p className='mb-0'>pwd: admin1234</p>
+			</div>
+		</div>
       <Container className='vh-100 d-md-flex align-items-center justify-content-center'>
 
 		<div className='text-center'>
