@@ -43,9 +43,7 @@ export default function Search() {
     
   return (
     <>
-    <div className='sticky-top'>
-        <AppNavBar />
-    </div>
+    
     <Container className='search-container'>
         <h3 className='mt-3 mt-md-4 mb-3 fw-bold bg-white p-3 text-center'>Search result for "{searchParams.get('searchQuery')}"</h3>
 

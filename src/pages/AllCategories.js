@@ -7,9 +7,6 @@ import { Link } from 'react-router-dom'
 export default function AllCategories() {
   return (
     <>
-    <div className='sticky-top'>
-        <AppNavBar />
-    </div>
     <Container className='mt-3 mt-md-5 mb-5'>
       <Row className='mb-4'>
 

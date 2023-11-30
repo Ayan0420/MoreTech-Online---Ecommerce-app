@@ -10,9 +10,7 @@ export default function AllProducts() {
     
   return (
     <>
-    <div className='sticky-top'>
-        <AppNavBar />
-    </div>
+    
     <Container >
         <h3 className='mt-3 mt-md-4 mb-3 fw-bold bg-white p-3 text-center'>All Products</h3>
         <ProductSectionAllProducts />

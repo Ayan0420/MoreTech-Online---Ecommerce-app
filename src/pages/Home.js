@@ -12,10 +12,7 @@ import CategoryHome from '../components/CategoryHome';
 export default function Home() {
   return (
     <>
-      <div className='sticky-top'>
-        <AppNavBar />
-      </div>
-    
+      
       <Container>
         
         <h1 className='my-2 my-md-4 home-header text-primary bg-white p-3 text-center'>Get All Your TECH Needs in One Place!</h1>

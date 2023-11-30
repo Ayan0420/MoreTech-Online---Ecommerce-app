@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { UserProvider } from './userContext';
 
+import AppNavBar from './components/AppNavbar'
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login'
@@ -88,18 +89,56 @@ const App = () => {
         <ScrollToTop>
         {/* <AppNavBar /> */}
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/logout" element={<Logout />} />
-              <Route path="/register" element={<Register />} />
-              <Route path='/products' element={<AllProducts />} />
-              <Route path='/categories' element={<AllCategories />} />
-              <Route path='/category/:category' element={<Category />} />
-              <Route path='/product/:productId' element={<ProductPage />} />
+              <Route path="/" element={
+                <>
+                <div className='sticky-top'>
+                  <AppNavBar />
+                </div>
+                <Home />
+                </>
+              } />
+              <Route path="/login" element={<>
+                <Login />
+              </>} />
+              <Route path="/logout" element={<>
+                <Logout />
+              </>} />
+              <Route path="/register" element={<>
+                <Register />              
+              </>} />
+              <Route path='/products' element={<>
+                <div className='sticky-top'>
+                    <AppNavBar />
+                </div>
+                <AllProducts />
+              </>} />
+              <Route path='/categories' element={<>
+                <div className='sticky-top'>
+                    <AppNavBar />
+                </div>
+                <AllCategories />
+              </>} />
+              <Route path='/category/:category' element={<>
+                <div className='sticky-top'>
+                    <AppNavBar />
+                </div>
+                <Category />
+              </>} />
+              <Route path='/product/:productId' element={<>
+                <AppNavBar />
+                <ProductPage />
+              </>} />
               <Route path='/redirect/:productId' element={<RedirectToProductPage />} />
-              <Route path='/search' element={<Search/>} />
-
-              <Route path='/profile' element={<UserProfile/>} />
+              <Route path='/search' element={<>
+                <div className='sticky-top'>
+                    <AppNavBar />
+                </div>
+                <Search/>
+              </>} />
+              <Route path='/profile' element={<>
+                <AppNavBar />
+                <UserProfile/>
+              </>} />
 
               <Route path='/admin-all-products' element={<AdminDashboardAllProducts/>} />
               <Route path='/admin-active-products' element={<AdminDashboardActiveProducts/>} />

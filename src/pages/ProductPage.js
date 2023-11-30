@@ -7,7 +7,6 @@ import Footer from "../components/Footer";
 export default function ProductPage() {
   return (
     <>
-        <AppNavBar />
         <Container className="mt-4">
             <ProductView />
             <ProductReviews />

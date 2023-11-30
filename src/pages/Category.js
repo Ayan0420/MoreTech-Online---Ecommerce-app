@@ -45,9 +45,7 @@ export default function Category() {
   
 return (
   <>
-  <div className='sticky-top'>
-      <AppNavBar />
-  </div>
+  
   <Container className='search-container'>
       <div className='mt-2 mt-md-4 mb-3 '>
         <Link to='/categories' className='text-primary'><i className='fa-solid fa-caret-left'></i> Go Back to Categories</Link>
