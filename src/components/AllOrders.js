@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Accordion, Button, Col, Container, Row } from 'react-bootstrap'
-import UserContext from '../userContext'
+import React, { useEffect, useState } from 'react';
+import { Accordion, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
 // import Swal from 'sweetalert2';
-import AddProductreview from './AddProductreview';
 import moment from 'moment';
 
 export default function UserOrders() {

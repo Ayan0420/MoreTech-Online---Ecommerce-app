@@ -1,7 +1,7 @@
-import { useContext, useEffect } from "react"
-import { Navigate } from "react-router-dom"
-import UserContext from "../userContext"
+import { useContext, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import UserContext from "../userContext";
 
 export default function Logout() {
     localStorage.clear()

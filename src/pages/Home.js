@@ -1,12 +1,11 @@
-import React from 'react'
-import AppNavBar from '../components/AppNavbar'
+import React from 'react';
 import { Container } from 'react-bootstrap';
 // import ProductCard from '../components/ProductCard'
-import BannerCarousel from '../components/BannerCarousel'
-import ProductSectionHome from '../components/ProductSectionHome';
-import ProductSectionFeatured from '../components/ProductSectionFeatured';
-import Footer from '../components/Footer';
+import BannerCarousel from '../components/BannerCarousel';
 import CategoryHome from '../components/CategoryHome';
+import Footer from '../components/Footer';
+import ProductSectionFeatured from '../components/ProductSectionFeatured';
+import ProductSectionHome from '../components/ProductSectionHome';
 
 
 export default function Home() {

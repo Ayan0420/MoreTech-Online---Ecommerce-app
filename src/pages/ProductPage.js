@@ -1,8 +1,7 @@
 import { Container } from "react-bootstrap";
-import AppNavBar from "../components/AppNavbar";
-import ProductView from "../components/ProductView";
-import ProductReviews from "../components/ProductReviews";
 import Footer from "../components/Footer";
+import ProductReviews from "../components/ProductReviews";
+import ProductView from "../components/ProductView";
 
 export default function ProductPage() {
   return (

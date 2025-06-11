@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
-import Loading from "./Loading"
 import Swal from "sweetalert2";
 import UserContext from "../userContext";
+import Loading from "./Loading";
 
 export default function Cart({pulledDataFromCart}) {
 

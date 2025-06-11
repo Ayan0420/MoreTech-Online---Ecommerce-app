@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { Row, Col } from "react-bootstrap"
+import { Col } from "react-bootstrap"
 import { Link, NavLink } from "react-router-dom"
 import UserContext from "../userContext"
 

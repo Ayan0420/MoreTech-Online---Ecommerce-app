@@ -1,9 +1,9 @@
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import { useState, useEffect, useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import UserContext from '../userContext';
 import Swal from 'sweetalert2';
 import Loading from '../components/Loading';
+import UserContext from '../userContext';
 
 export default function Register() {
 

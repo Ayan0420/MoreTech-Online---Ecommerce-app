@@ -1,11 +1,11 @@
-import { Col, Row, Container } from "react-bootstrap"
-import AdminSidebar from "../../components/AdminSidebar"
+import { Col, Row } from "react-bootstrap"
 import AddProductForm from "../../components/AddProductForm"
+import AdminSidebar from "../../components/AdminSidebar"
 
-import { useNavigate } from "react-router-dom"
-import UserContext from "../../userContext"
-import Swal from "sweetalert2"
 import { useContext, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import Swal from "sweetalert2"
+import UserContext from "../../userContext"
 
 export default function AdminDashboardAddProduct() {
 

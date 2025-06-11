@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { Button, Form, Modal, Spinner } from "react-bootstrap"
+import { Button, Form, Modal, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import Swal from "sweetalert2";

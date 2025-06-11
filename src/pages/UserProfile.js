@@ -1,6 +1,5 @@
 
-import { Button, Col, Container, Row } from 'react-bootstrap'
-import AppNavBar from '../components/AppNavbar'
+import { Col, Container, Row } from 'react-bootstrap'
 import UserInfo from '../components/UserInfo'
 import UserOrders from '../components/UserOrders'
 

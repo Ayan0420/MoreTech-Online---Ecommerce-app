@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap'
-import UserContext from '../userContext'
+import React, { useContext, useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import UserContext from '../userContext';
 import Loading from './Loading';
 
 export default function UserInfo() {

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import AppNavBar from '../components/AppNavbar'
-import ProductSectionAllProducts from '../components/ProductSectionAllProducts'
 import { Container, Row } from 'react-bootstrap'
-import Footer from '../components/Footer'
 import { Link, useParams } from 'react-router-dom'
-import ProductCard from '../components/ProductCard'
+import Footer from '../components/Footer'
 import Loading from '../components/Loading'
+import ProductCard from '../components/ProductCard'
 
 
 export default function Category() {

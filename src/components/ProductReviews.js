@@ -1,8 +1,8 @@
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import AvgRatingStars from "./AvgRatingStars";
-import moment from "moment";
 import Loading from "./Loading";
 
 export default function ProductReviews() {

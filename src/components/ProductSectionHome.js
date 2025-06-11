@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react"
-import { Card, Col, Row, Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Button, Row } from "react-bootstrap";
 
-import AvgRatingStars from "./AvgRatingStars";
-import ProductCard from "./ProductCard"
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
+import ProductCard from "./ProductCard";
 export default function ProductSectionHome() {
 
     const [products, setProducts] = useState([]);

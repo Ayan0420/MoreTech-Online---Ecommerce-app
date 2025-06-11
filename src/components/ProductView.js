@@ -1,10 +1,10 @@
-import { Col, Row, Button, InputGroup, Form, Spinner } from "react-bootstrap"
-import AvgRatingStars from "./AvgRatingStars"
 import { useContext, useEffect, useState } from "react";
+import { Button, Col, Form, InputGroup, Row, Spinner } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import Loading from "./Loading";
 import Swal from "sweetalert2";
 import UserContext from "../userContext";
+import AvgRatingStars from "./AvgRatingStars";
+import Loading from "./Loading";
 
 export default function ProductView(props) {
   

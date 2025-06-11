@@ -1,6 +1,6 @@
-import { Card, Col, Row } from "react-bootstrap";
-import AvgRatingStars from "./AvgRatingStars";
+import { Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import AvgRatingStars from "./AvgRatingStars";
 
 export default function ProductCard(props) {
     

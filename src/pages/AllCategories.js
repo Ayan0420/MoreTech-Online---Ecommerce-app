@@ -1,8 +1,7 @@
 import React from 'react'
-import AppNavBar from '../components/AppNavbar'
-import { Container, Row, Col, Card } from 'react-bootstrap'
-import Footer from '../components/Footer'
+import { Card, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import Footer from '../components/Footer'
 
 export default function AllCategories() {
   return (

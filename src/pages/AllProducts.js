@@ -1,8 +1,7 @@
 import React from 'react'
-import AppNavBar from '../components/AppNavbar'
-import ProductSectionAllProducts from '../components/ProductSectionAllProducts'
 import { Container } from 'react-bootstrap'
 import Footer from '../components/Footer'
+import ProductSectionAllProducts from '../components/ProductSectionAllProducts'
 
 export default function AllProducts() {
 

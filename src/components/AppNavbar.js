@@ -1,12 +1,12 @@
 
 import { useContext, useEffect, useState } from 'react';
 
-import {InputGroup, Form, Button, Nav, Navbar, Container, Offcanvas, Badge} from 'react-bootstrap'
+import { Badge, Button, Container, Form, InputGroup, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 
 
-import {Link, useNavigate, } from 'react-router-dom';
+import { Link, useNavigate, } from 'react-router-dom';
 import UserContext from '../userContext';
-import Cart from "./Cart"
+import Cart from "./Cart";
 
 export default function AppNavBar() {
 

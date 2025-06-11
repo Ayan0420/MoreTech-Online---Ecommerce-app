@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
-import AdminSidebar from '../../components/AdminSidebar'
-import { Col, Row, Table } from 'react-bootstrap'
-import Swal from 'sweetalert2';
-import UserContext from '../../userContext';
+import React, { useContext, useEffect, useState } from 'react';
+import { Col, Row, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import AdminActionButtons from '../../components/AdminActionButtons';
+import AdminSidebar from '../../components/AdminSidebar';
 import Loading from '../../components/Loading';
-import AdminActionButtons from '../../components/AdminActionButtons'
+import UserContext from '../../userContext';
 
 export default function AdminDashboardsUsers() {
 

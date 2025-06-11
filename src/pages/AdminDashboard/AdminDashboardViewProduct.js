@@ -1,10 +1,10 @@
 
-import { Link } from "react-router-dom"
 import { Button, Col, Row } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 import AdminSidebar from "../../components/AdminSidebar"
-import ProductView from "../../components/ProductView"
 import ProductReviews from "../../components/ProductReviews"
+import ProductView from "../../components/ProductView"
 
 export default function AdminDashboardViewProduct() {
 
