@@ -51,7 +51,6 @@ export default function ActionButtons(props) {
           setIsLoading(false);
           Swal.fire({
             title: 'Something went wrong!',
-            text: `${data.message}`,
             icon: 'error',
             confirmButtonColor: "#2c3e50",
             text: 'Please try again'
@@ -167,7 +166,6 @@ export default function ActionButtons(props) {
               setIsLoading(false);
               Swal.fire({
                 title: 'Something went wrong!',
-                text: `${data.message}`,
                 icon: 'error',
                 confirmButtonColor: "#2c3e50",
                 text: 'Please try again'

@@ -86,7 +86,7 @@ export default function Cart({pulledDataFromCart}) {
 
   function checkout(cartItem){
 
-    const {id, cartIds, productId, productName, price, quantity, subTotal, totalAmount} = cartItem;
+    const {id, cartIds, productName, price, quantity, totalAmount} = cartItem;
     let cartItemId;
     let html;
     if(id === undefined){

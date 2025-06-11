@@ -81,7 +81,7 @@ export default function AppNavBar() {
         
         <Nav className="py-0 ms-auto">
         { isLoading ? <span className='text-light'>...</span> : (user.id !== null) ?
-          ((user.isAdmin == true) ?
+          ((user.isAdmin === true) ?
             <>
               <Nav.Link as={Link} to='/admin-active-products' className="py-0">Admin Dashboard</Nav.Link>
               <span className="text-light">|</span>

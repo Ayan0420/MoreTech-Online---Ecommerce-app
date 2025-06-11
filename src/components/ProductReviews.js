@@ -24,7 +24,7 @@ export default function ProductReviews() {
             setReviews(data.reviews);
             setAvgRating(data.avgRating);
         })
-      }, []);
+      }, [productId]);
 
   return (
     <div className="bg-white mt-4 p-5">
